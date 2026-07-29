@@ -6,7 +6,7 @@ import os
 import sys
 from playwright.async_api import async_playwright
 
-GAS_WEBAPP_URL = os.environ.get("GAS_URL", "https://script.google.com/macros/s/AKfycbzQ8G-hYjFin24l5Om7wsPGDXGk8bnvw8jkL3P6ckmfjJlzSxHavGhnGfHGoz2NxTXwAg/exec")
+GAS_WEBAPP_URL = os.environ.get("GAS_URL", "https://script.google.com/macros/s/AKfycbzpXPZclpIAytrJqZ2-4xxVbUxYuByHLQR8wN24g_pz6pXvqzS4gXvVSVtgrf8GVRhY2A/exec")
 
 if not GAS_WEBAPP_URL:
     print("오류: 구글 웹 앱 URL(GAS_URL)이 세팅되지 않았습니다.")
