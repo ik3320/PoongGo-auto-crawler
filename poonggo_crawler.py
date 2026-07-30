@@ -7,7 +7,7 @@ import sys
 from playwright.async_api import async_playwright
 
 # 백업 주소(기본값)를 없애고 pure 환경변수만 가져옵니다.
-GAS_WEBAPP_URL = os.environ.get("GAS_URL")
+GAS_WEBAPP_URL = os.environ.get("GAS_WEB_APP_URL")
 
 if not GAS_WEBAPP_URL:
     print("오류: 구글 웹 앱 URL(GAS_URL)이 세팅되지 않았습니다.")
