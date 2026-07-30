@@ -31,3 +31,5 @@ jobs:
     - name: Run Crawler Script
       run: |
         python poonggo_crawler.py
+env:
+  GAS_URL: ${{ secrets.GAS_WEB_APP_URL }}
