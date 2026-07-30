@@ -29,7 +29,8 @@ jobs:
         python -m playwright install chromium --with-deps
 
     - name: Run Crawler Script
+      env:
+        GAS_WEBAPP_URL: ${{ secrets.GAS_WEB_APP_URL }}
       run: |
         python poonggo_crawler.py
-env:
-  GAS_URL: ${{ secrets.GAS_WEB_APP_URL }}
+
