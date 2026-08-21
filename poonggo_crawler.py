@@ -38,11 +38,10 @@ async def crawl_poonggo_data(playwright_page, url):
     result = {"poong": 0.0, "accum_viewers": 0.0, "time": 0.0}
     try:
         await playwright_page.goto(url)
-        await playwright_page.wait_for_timeout(5000)
+        await playwright_page.wait_for_timeout(4000)
         
-        # 1. 별풍선 합계 (풍력) 추출
-        # 구조: '별풍선 합계' 텍스트를 가진 span을 찾고, 그 부모 div 안의 h3를 가져옵니다.
-        poong_xpath = "//span[text()='별풍선 합계']/ancestor::div[contains(@class, 'b')][1]//h3"
+        # 1. 별풍선 합계 (풍력) 추출 (em 태그 기반 card 탐색)
+        poong_xpath = "//em[contains(text(), '별풍선 합계')]/ancestor::div[contains(@class, 'card')][1]//h3"
         try:
             await playwright_page.wait_for_selector(f"xpath={poong_xpath}", timeout=3000)
             poong_raw = await playwright_page.locator(f"xpath={poong_xpath}").first.text_content()
@@ -53,9 +52,8 @@ async def crawl_poonggo_data(playwright_page, url):
         except Exception:
             pass 
 
-        # 2. 누적 시청자 추출
-        # 구조: '누적 시청자' 텍스트를 가진 span을 찾고, 그 부모 div 안의 h3를 가져옵니다.
-        viewers_xpath = "//span[text()='누적 시청자']/ancestor::div[contains(@class, 'b')][1]//h3"
+        # 2. 누적 시청자 추출 (em 태그 기반 card 탐색)
+        viewers_xpath = "//em[contains(text(), '누적 시청자')]/ancestor::div[contains(@class, 'card')][1]//h3"
         try:
             await playwright_page.wait_for_selector(f"xpath={viewers_xpath}", timeout=3000)
             viewers_raw = await playwright_page.locator(f"xpath={viewers_xpath}").first.text_content()
@@ -66,9 +64,8 @@ async def crawl_poonggo_data(playwright_page, url):
         except Exception:
             pass 
 
-        # 3. 방송시간 추출
-        # 구조: '방송시간' 텍스트를 가진 span을 찾고, 그 부모 div 안의 h3를 가져옵니다.
-        time_xpath = "//span[text()='방송시간']/ancestor::div[contains(@class, 'b')][1]//h3"
+        # 3. 방송시간 추출 (em 태그 기반 card 탐색)
+        time_xpath = "//em[contains(text(), '방송시간')]/ancestor::div[contains(@class, 'card')][1]//h3"
         try:
             await playwright_page.wait_for_selector(f"xpath={time_xpath}", timeout=3000)
             time_raw = await playwright_page.locator(f"xpath={time_xpath}").first.text_content()
